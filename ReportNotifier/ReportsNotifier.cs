@@ -2,6 +2,8 @@
 using BepInEx.Bootstrap;
 using HarmonyLib;
 using Photon.Pun;
+using PokrukMenu;
+using PokrukMenu.Classes;
 using PokrukMenu.Menu;
 using PokrukNotifyLib.Notifications;
 
@@ -26,11 +28,11 @@ namespace ReportNotifier {
         }
         [MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.NoOptimization)]
         public static void InitButtons() {
-            Buttons.Pages[Buttons.PageNames.MainMods].Add(Buttons.toToggleButton(
+            PokrukMenuAPI.AddButtonToPage(Buttons.PageNames.MainMods, Buttons.toToggleButton(
                 "RPCReportNotifierEnabled",
                 () => notifiEnabled, 
-                val => notifiEnabled = val)
-            );
+                val => notifiEnabled = val, 
+                true));
         }
     }
 }
